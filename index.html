@@ -5,179 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PortAventura World — Base de Datos Completa</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-:root{--red:#E8272A;--orange:#F5820D;--yellow:#F9C923;--dark:#0C0C10;--dark2:#101014;--card:#141419;--card2:#1A1A22;--border:rgba(255,255,255,0.07);--text:#EEEEF5;--muted:#5A5A70}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
-header{position:relative;padding:60px 52px 48px;background:var(--dark2);border-bottom:1px solid var(--border);overflow:hidden}
-header::before{content:'';position:absolute;top:-120px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,39,42,.12) 0%,transparent 65%);pointer-events:none}
-.hbg{position:absolute;right:40px;bottom:-20px;font-family:'Bebas Neue',sans-serif;font-size:200px;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;user-select:none;letter-spacing:-4px}
-.htag{display:inline-flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10px;color:var(--orange);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;background:rgba(245,130,13,.08);padding:5px 12px;border-radius:4px;border:1px solid rgba(245,130,13,.18)}
-.htag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,88px);line-height:.9;letter-spacing:1px;margin-bottom:18px}
-h1 .w{color:#fff}
-h1 .a{background:linear-gradient(135deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-header p{color:var(--muted);font-size:14px;max-width:520px;line-height:1.7;margin-bottom:36px}
-.stats{display:flex;flex-wrap:wrap;gap:0}
-.stat{padding:0 32px 0 0;margin-right:32px;border-right:1px solid var(--border)}
-.stat:last-child{border-right:none}
-.sn{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:var(--yellow)}
-.sl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-family:'Space Mono',monospace;margin-top:2px}
-.ctrl{max-width:1440px;margin:0 auto;padding:28px 32px 0;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.sb{position:relative;flex:1;min-width:200px;max-width:360px}
-.sb input{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Space Mono',monospace;font-size:12px;padding:10px 14px 10px 36px;border-radius:6px;outline:none;transition:border-color .2s}
-.sb input::placeholder{color:var(--muted)}
-.sb input:focus{border-color:rgba(255,255,255,.2)}
-.si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px}
-.btn{background:var(--card);border:1px solid var(--border);color:var(--muted);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1px;padding:10px 16px;border-radius:6px;cursor:pointer;transition:all .2s;text-transform:uppercase}
-.btn:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
-.leg{display:flex;gap:16px;margin-left:auto;flex-wrap:wrap;align-items:center}
-.li{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted);font-family:'Space Mono',monospace}
-.dot{width:7px;height:7px;border-radius:50%}
-.dpk{background:var(--yellow)}.dfk{background:var(--orange)}.df{background:#444}
-main{max-width:1440px;margin:0 auto;padding:28px 32px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:18px}
-.module{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
-.module:hover{border-color:rgba(255,255,255,.12);box-shadow:0 8px 40px rgba(0,0,0,.4)}
-.mh{padding:18px 20px 16px;display:flex;align-items:flex-start;gap:14px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
-.mg{position:absolute;top:-30px;left:-30px;width:120px;height:120px;border-radius:50%;opacity:.12;pointer-events:none}
-.mi{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;position:relative;z-index:1}
-.minfo{flex:1;position:relative;z-index:1}
-.mn{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
-.mt{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:.5px;line-height:1}
-.tc{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--border);padding:3px 9px;border-radius:20px;position:relative;z-index:1;flex-shrink:0;align-self:center}
-.tl{padding:10px;display:flex;flex-direction:column;gap:6px}
-.dbt{background:var(--card2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.dbth{padding:9px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;transition:background .15s}
-.dbth:hover{background:rgba(255,255,255,.03)}
-.dbn{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--text);flex:1}
-.fbc{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted)}
-.ch{color:var(--muted);font-size:10px;transition:transform .2s;flex-shrink:0}
-.dbt.open .ch{transform:rotate(180deg)}
-.dbtf{display:none;border-top:1px solid var(--border)}
-.dbt.open .dbtf{display:block}
-.fr{display:grid;grid-template-columns:16px 1fr 110px 50px auto;align-items:center;padding:6px 12px;border-bottom:1px solid rgba(255,255,255,.025);gap:6px}
-.fr:last-child{border-bottom:none}
-.fdot{width:6px;height:6px;border-radius:50%;justify-self:center}
-.fn{font-family:'Space Mono',monospace;font-size:10.5px;color:#C8C8D8}
-.ft{font-family:'Space Mono',monospace;font-size:9px;color:#E8272A;text-align:right;opacity:.85;word-break:break-all}
-.fc{font-size:9px;text-align:right;font-family:'Space Mono',monospace;color:var(--muted)}
-.fc.pk{color:var(--yellow)}.fc.fk{color:var(--orange)}.fc.nn{color:#5AC8FA}
-.m1 .mi{background:rgba(232,39,42,.12)}.m1 .mt{color:#FF6B6B}.m1 .mg{background:#E8272A}
-.m2 .mi{background:rgba(245,130,13,.12)}.m2 .mt{color:#FFAA5C}.m2 .mg{background:#F5820D}
-.m3 .mi{background:rgba(249,201,35,.12)}.m3 .mt{color:#F9C923}.m3 .mg{background:#F9C923}
-.m4 .mi{background:rgba(52,199,89,.12)}.m4 .mt{color:#5EDD8A}.m4 .mg{background:#34C759}
-.m5 .mi{background:rgba(90,200,250,.12)}.m5 .mt{color:#5AC8FA}.m5 .mg{background:#5AC8FA}
-.m6 .mi{background:rgba(100,210,255,.10)}.m6 .mt{color:#70D0FF}.m6 .mg{background:#64D2FF}
-.m7 .mi{background:rgba(255,149,0,.12)}.m7 .mt{color:#FF9F40}.m7 .mg{background:#FF9500}
-.m8 .mi{background:rgba(162,132,94,.15)}.m8 .mt{color:#C8A97A}.m8 .mg{background:#A2845E}
-.m9 .mi{background:rgba(255,69,58,.12)}.m9 .mt{color:#FF6B5B}.m9 .mg{background:#FF453A}
-.m10 .mi{background:rgba(175,82,222,.12)}.m10 .mt{color:#C77DFF}.m10 .mg{background:#AF52DE}
-.m11 .mi{background:rgba(255,55,95,.12)}.m11 .mt{color:#FF6B8A}.m11 .mg{background:#FF375F}
-.m12 .mi{background:rgba(255,214,10,.12)}.m12 .mt{color:#FFD60A}.m12 .mg{background:#FFD60A}
-.m13 .mi{background:rgba(48,209,88,.12)}.m13 .mt{color:#30D158}.m13 .mg{background:#30D158}
-.m14 .mi{background:rgba(255,255,255,.08)}.m14 .mt{color:#E8E8F0}.m14 .mg{background:#EBEBF5}
-.m15 .mi{background:rgba(255,159,10,.12)}.m15 .mt{color:#FF9F0A}.m15 .mg{background:#FF9F0A}
-.m16 .mi{background:rgba(100,210,255,.12)}.m16 .mt{color:#64D2FF}.m16 .mg{background:#64D2FF}
-.m17 .mi{background:rgba(255,55,95,.12)}.m17 .mt{color:#FF375F}.m17 .mg{background:#FF375F}
-.m18 .mi{background:rgba(52,199,89,.12)}.m18 .mt{color:#4CD964}.m18 .mg{background:#4CD964}
-.m19 .mi{background:rgba(90,200,250,.12)}.m19 .mt{color:#5AC8FA}.m19 .mg{background:#0A84FF}
-.m20 .mi{background:rgba(255,214,10,.12)}.m20 .mt{color:#FFD60A}.m20 .mg{background:#FFD60A}
-.m21 .mi{background:rgba(175,82,222,.12)}.m21 .mt{color:#DA8FFF}.m21 .mg{background:#BF5AF2}
-.m22 .mi{background:rgba(255,149,0,.12)}.m22 .mt{color:#FFB340}.m22 .mg{background:#FF9500}
-.m23 .mi{background:rgba(48,209,88,.12)}.m23 .mt{color:#34C759}.m23 .mg{background:#34C759}
-.module.hidden,.dbt.hidden{display:none}
-footer{text-align:center;padding:32px;border-top:1px solid var(--border);font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;line-height:2}
-footer span{color:var(--red)}
-footer .credits{margin-top:6px;color:#333;font-size:9px}
-
-.ft{max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:default}
-.ft:hover{overflow:visible;position:relative;z-index:5;background:var(--card2);padding:2px 4px;border-radius:3px;max-width:none;box-shadow:0 2px 12px rgba(0,0,0,.5)}
-.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;opacity:0;pointer-events:none;transition:opacity .3s}
-.sidebar-overlay.vis{opacity:1;pointer-events:auto}
-.sidebar{position:fixed;top:0;left:0;width:280px;height:100vh;background:var(--dark2);border-right:1px solid var(--border);z-index:1000;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
-.sidebar.open{transform:translateX(0)}
-.sidebar-header{padding:20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
-.sidebar-label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--orange);text-transform:uppercase}
-.sidebar-close{background:none;border:1px solid var(--border);color:var(--muted);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.sidebar-close:hover{border-color:rgba(255,255,255,.2);color:var(--text)}
-.sidebar-list{flex:1;overflow-y:auto;padding:8px 10px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
-.sidebar-list::-webkit-scrollbar{width:4px}
-.sidebar-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:12px;transition:all .15s;cursor:pointer;border:1px solid transparent}
-.nav-item:hover{background:rgba(255,255,255,.04);color:var(--text);border-color:var(--border)}
-.nav-item.active{background:rgba(232,39,42,.08);color:var(--red);border-color:rgba(232,39,42,.2)}
-.nav-emoji{font-size:16px;width:22px;text-align:center;flex-shrink:0}
-.nav-num{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);width:20px;flex-shrink:0}
-.nav-title{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sidebar-btn{position:fixed;top:20px;left:20px;z-index:998;background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:8px;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.sidebar-btn:hover{border-color:rgba(255,255,255,.2);box-shadow:0 6px 30px rgba(0,0,0,.5)}
-.sidebar-btn-text{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
-.sidebar-btn.hide{opacity:0;pointer-events:none;transform:translateX(-20px)}
-.fk-ref{font-family:'Space Mono',monospace;font-size:9px;color:var(--orange);margin-left:auto;cursor:pointer;padding:2px 6px;border-radius:3px;background:rgba(245,130,13,.06);border:1px solid rgba(245,130,13,.12);transition:all .2s;white-space:nowrap;flex-shrink:0}
-.fk-ref:hover{background:rgba(245,130,13,.15);border-color:rgba(245,130,13,.3);color:#fff}
-.scroll-top{position:fixed;bottom:28px;right:28px;z-index:998;width:44px;height:44px;border-radius:12px;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;opacity:0;transform:translateY(20px);pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.scroll-top.vis{opacity:1;transform:translateY(0);pointer-events:auto}
-.scroll-top:hover{border-color:var(--orange);color:var(--orange)}
-.search-counter{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);padding:6px 12px;background:rgba(255,255,255,.03);border-radius:6px;border:1px solid var(--border);display:none}
-.search-counter.on{display:block}
-.search-counter .cn{color:var(--yellow);font-weight:700}
-.no-results{grid-column:1/-1;text-align:center;padding:80px 20px;animation:fadeUp .4s ease}
-.nr-icon{font-size:48px;margin-bottom:16px;opacity:.5}
-.nr-text{font-size:16px;color:var(--muted);margin-bottom:8px}
-.nr-text span{color:var(--orange);font-weight:600}
-.nr-hint{font-size:12px;color:var(--muted);opacity:.6;font-family:'Space Mono',monospace}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-footer{background:var(--dark2);border-top:1px solid var(--border);padding:40px 52px;margin-top:20px}
-.footer-inner{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
-.footer-left{display:flex;align-items:center;gap:16px}
-.footer-logo{font-size:20px;color:var(--red);background:rgba(232,39,42,.1);width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid rgba(232,39,42,.2)}
-.footer-t{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px}
-.footer-s{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:2px}
-.footer-right{display:flex;gap:32px;flex-wrap:wrap}
-.footer-col{display:flex;flex-direction:column;gap:4px;font-size:12px}
-.footer-label{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px}
-.dbt.hl{animation:hlPulse 1.5s ease}
-@keyframes hlPulse{0%{background:rgba(245,130,13,.15)}100%{background:transparent}}
-.copy-btn{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);font-family:'Space Mono',monospace;font-size:9px;padding:3px 8px;border-radius:4px;cursor:pointer;opacity:0;transition:all .2s;z-index:2;letter-spacing:.5px}
-.dbt:hover .copy-btn,.dbt.open .copy-btn{opacity:1}
-.copy-btn:hover{background:rgba(245,130,13,.1);border-color:rgba(245,130,13,.3);color:var(--orange)}
-.copy-btn.ok{background:rgba(0,200,83,.1);border-color:rgba(0,200,83,.3);color:#00c853}
-
-/* ER Diagram Modal */
-.er-global-btn{color:var(--orange) !important;border-color:rgba(245,130,13,.3) !important}
-.er-global-btn:hover{background:rgba(245,130,13,.1) !important}
-.er-modal{position:fixed;inset:0;z-index:2000;background:var(--dark);display:none;flex-direction:column;animation:fadeUp .3s ease}
-.er-modal.open{display:flex}
-.er-modal-header{padding:16px 24px;background:var(--dark2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.er-modal-title-area{display:flex;align-items:center;gap:12px}
-.er-modal-icon{color:var(--orange);font-size:18px}
-.er-modal-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px}
-.er-modal-subtitle{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;background:rgba(255,255,255,.04);padding:4px 10px;border-radius:4px;border:1px solid var(--border)}
-.er-modal-controls{display:flex;align-items:center;gap:12px}
-.er-select{background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Space Mono',monospace;font-size:11px;padding:8px 12px;border-radius:6px;cursor:pointer;outline:none}
-.er-select:focus{border-color:rgba(255,255,255,.2)}
-.er-close{background:none;border:1px solid var(--border);color:var(--muted);width:36px;height:36px;border-radius:8px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.er-close:hover{border-color:var(--red);color:var(--red)}
-.er-canvas-wrap{flex:1;overflow:auto;position:relative;background:var(--dark);background-image:radial-gradient(circle,rgba(255,255,255,.02) 1px,transparent 1px);background-size:24px 24px}
-.er-svg{width:100%;min-height:100%}
-.er-legend{padding:12px 24px;background:var(--dark2);border-top:1px solid var(--border);display:flex;gap:20px;align-items:center;flex-shrink:0}
-.er-leg-item{display:flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted)}
-.er-leg-dot{width:10px;height:10px;border-radius:50%}
-.er-leg-int{background:var(--orange)}
-.er-leg-ext{background:rgba(255,255,255,.2)}
-.er-leg-pk{background:var(--yellow)}
-
-/* ER per-module button */
-.er-mod-btn{background:rgba(245,130,13,.08);border:1px solid rgba(245,130,13,.15);color:var(--orange);font-family:'Space Mono',monospace;font-size:9px;padding:3px 8px;border-radius:4px;cursor:pointer;transition:all .2s;letter-spacing:.5px;margin-left:auto}
-.er-mod-btn:hover{background:rgba(245,130,13,.15);border-color:rgba(245,130,13,.3)}
-
-.dbth{position:relative}
-.dbt{position:relative}
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Cambiar modo">🌓</button>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <nav class="sidebar" id="sidebar"><div class="sidebar-header"><span class="sidebar-label">MODULOS</span><button class="sidebar-close" onclick="toggleSidebar()">X</button></div><div class="sidebar-list"><a href="#mod-01" class="nav-item" onclick="navTo('mod-01',event)"><span class="nav-emoji">🎢</span><span class="nav-num">01</span><span class="nav-title">Parques e Infraestructura</span></a><a href="#mod-02" class="nav-item" onclick="navTo('mod-02',event)"><span class="nav-emoji">🎟️</span><span class="nav-num">02</span><span class="nav-title">Entradas y Tickets</span></a><a href="#mod-03" class="nav-item" onclick="navTo('mod-03',event)"><span class="nav-emoji">⭐</span><span class="nav-num">03</span><span class="nav-title">Pases Anuales Club</span></a><a href="#mod-04" class="nav-item" onclick="navTo('mod-04',event)"><span class="nav-emoji">🏨</span><span class="nav-num">04</span><span class="nav-title">Hoteles y Habitaciones</span></a><a href="#mod-05" class="nav-item" onclick="navTo('mod-05',event)"><span class="nav-emoji">👤</span><span class="nav-num">05</span><span class="nav-title">Reservas y Clientes</span></a><a href="#mod-06" class="nav-item" onclick="navTo('mod-06',event)"><span class="nav-emoji">🚗</span><span class="nav-num">06</span><span class="nav-title">Logística y Parking</span></a><a href="#mod-07" class="nav-item" onclick="navTo('mod-07',event)"><span class="nav-emoji">🍔</span><span class="nav-num">07</span><span class="nav-title">Restauración y Tiendas</span></a><a href="#mod-08" class="nav-item" onclick="navTo('mod-08',event)"><span class="nav-emoji">📦</span><span class="nav-num">08</span><span class="nav-title">Inventario y Proveedores</span></a><a href="#mod-09" class="nav-item" onclick="navTo('mod-09',event)"><span class="nav-emoji">🔧</span><span class="nav-num">09</span><span class="nav-title">Mantenimiento y Seguridad</span></a><a href="#mod-10" class="nav-item" onclick="navTo('mod-10',event)"><span class="nav-emoji">👷</span><span class="nav-num">10</span><span class="nav-title">Personal (HR)</span></a><a href="#mod-11" class="nav-item" onclick="navTo('mod-11',event)"><span class="nav-emoji">💳</span><span class="nav-num">11</span><span class="nav-title">Pagos, Promos y Feedback</span></a><a href="#mod-12" class="nav-item" onclick="navTo('mod-12',event)"><span class="nav-emoji">📸</span><span class="nav-num">12</span><span class="nav-title">Fotografía PhotoRide</span></a><a href="#mod-13" class="nav-item" onclick="navTo('mod-13',event)"><span class="nav-emoji">🌦️</span><span class="nav-num">13</span><span class="nav-title">Meteorología y App</span></a><a href="#mod-14" class="nav-item" onclick="navTo('mod-14',event)"><span class="nav-emoji">🏥</span><span class="nav-num">14</span><span class="nav-title">Sector Médico</span></a><a href="#mod-15" class="nav-item" onclick="navTo('mod-15',event)"><span class="nav-emoji">🎉</span><span class="nav-num">15</span><span class="nav-title">Eventos y VIP</span></a><a href="#mod-16" class="nav-item" onclick="navTo('mod-16',event)"><span class="nav-emoji">🚂</span><span class="nav-num">16</span><span class="nav-title">Transporte Interno</span></a><a href="#mod-17" class="nav-item" onclick="navTo('mod-17',event)"><span class="nav-emoji">🎯</span><span class="nav-num">17</span><span class="nav-title">Juegos de Feria</span></a><a href="#mod-18" class="nav-item" onclick="navTo('mod-18',event)"><span class="nav-emoji">🦅</span><span class="nav-num">18</span><span class="nav-title">Animales y Espectáculos</span></a><a href="#mod-19" class="nav-item" onclick="navTo('mod-19',event)"><span class="nav-emoji">🏢</span><span class="nav-num">19</span><span class="nav-title">B2B y Grupos</span></a><a href="#mod-20" class="nav-item" onclick="navTo('mod-20',event)"><span class="nav-emoji">🎁</span><span class="nav-num">20</span><span class="nav-title">Fidelización y Comunicaciones</span></a><a href="#mod-21" class="nav-item" onclick="navTo('mod-21',event)"><span class="nav-emoji">🛒</span><span class="nav-num">21</span><span class="nav-title">Servicios al Visitante</span></a><a href="#mod-22" class="nav-item" onclick="navTo('mod-22',event)"><span class="nav-emoji">📋</span><span class="nav-num">22</span><span class="nav-title">Encuestas y Calidad</span></a><a href="#mod-23" class="nav-item" onclick="navTo('mod-23',event)"><span class="nav-emoji">📣</span><span class="nav-num">23</span><span class="nav-title">Patrocinadores y Marketing</span></a></div></nav>
 <button class="sidebar-btn" id="sidebarBtn" onclick="toggleSidebar()"><span>&#9776;</span><span class="sidebar-btn-text">Modulos</span></button>
@@ -230,6 +61,18 @@ footer{background:var(--dark2);border-top:1px solid var(--border);padding:40px 5
 </main>
 <footer><div class="footer-inner"><div class="footer-left"><span class="footer-logo">&#9650;</span><div><div class="footer-t">PORTAVENTURA WORLD — DATABASE SCHEMA</div><div class="footer-s">Ingenieria Inversa de Base de Datos - Version Final</div></div></div><div class="footer-right"><div class="footer-col"><span class="footer-label">Autores</span><span>Roger &amp; Pavel</span></div><div class="footer-col"><span class="footer-label">Curso</span><span>DAM 2025 - CFGS</span></div><div class="footer-col"><span class="footer-label">Estadisticas</span><span>23 modulos - 90 tablas - 533+ campos</span></div></div></div></footer>
 <script>
+function toggleTheme() {
+  document.body.classList.toggle("light-mode");
+  const isLight = document.body.classList.contains("light-mode");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+  document.getElementById("themeToggle").textContent = isLight ? "🌙" : "☀️";
+}
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("themeToggle").textContent = "🌙";
+  });
+}
 var fkMap = {"agencia_id": "agencias_viajes", "album_id": "albumes_digipass", "almacen_id": "almacenes", "animal_id": "registro_animales", "aprobada_por": "empleados", "atraccion_id": "atracciones", "atraccion_id_especifica": "atracciones", "atraccion_relacionada_id": "atracciones", "camara_id": "camaras_atracciones", "campana_id": "campanas_marketing", "cliente_emisor_id": "clientes", "cliente_id": "clientes", "cliente_receptor_id": "clientes", "clima_id": "registro_clima", "cuidador_principal_id": "empleados", "departamento_id": "departamentos", "empleado_entrega_id": "empleados", "empleado_id": "empleados", "empleado_medico_id": "empleados", "empleado_reporta_id": "empleados", "empleado_solicitante_id": "empleados", "encuesta_id": "encuestas", "entrada_id": "entradas", "espectaculo_id": "espectaculos", "grupo_id": "reservas_grupos", "guia_empleado_id": "empleados", "habitacion_id": "habitaciones", "hotel_id": "hoteles", "instalacion_id": "instalaciones_medicas", "lugar_id": "mapa_ubicaciones", "pago_id": "pagos", "parque_id": "parques", "pase_anual_id": "pases_anuales", "patrocinador_id": "patrocinadores", "pedido_id": "pedidos_suministro", "pregunta_id": "preguntas_encuesta", "producto_id": "productos", "promo_id": "promociones_codigos", "proveedor_id": "proveedores", "proveedor_piezas_id": "proveedores", "proveedor_veterinario_id": "proveedores", "puesto_id": "puestos", "puesto_juego_id": "puestos_juegos", "punto_id": "puntos_comerciales", "realizado_por": "empleados", "regimen_id": "regimenes_comida", "registro_clima_id": "registro_clima", "reserva_hotel_id": "reservas_hotel", "reserva_id": "reservas_hotel", "responsable_id": "empleados", "ruta_id": "rutas_transporte", "tarifa_id": "tarifas_entradas", "tecnico_id": "empleados", "tecnico_responsable_id": "empleados", "temporada_id": "temporadas_tematicas", "tipo_entrada_id": "tipos_entrada", "tipo_hab_id": "tipos_habitacion", "tipo_pase_id": "tipos_pase", "token_id": "usuarios_app_tokens", "tour_id": "tours_vip_guiados", "ubicacion_id": "mapa_ubicaciones", "ubicacion_zona_id": "mapa_ubicaciones", "venta_id": "ventas_comerciales", "veterinario_id": "empleados", "zona_destino_id": "zonas_tematicas", "zona_id": "zonas_tematicas", "zona_origen_id": "zonas_tematicas", "zona_parking_id": "zonas_parking"};
 
 function toggleTable(h){
